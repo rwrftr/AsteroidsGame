@@ -1,21 +1,28 @@
-//your variable declarations here
+//global declarations
+
 Spaceship roger = new Spaceship();
 boolean charge, forward, leftturn, rightturn, backup = false; // my toggles when pressing keybuttons
 int storedenergy = 0;
-Star [] nightSky = new Star[200];
+Star [] stars = new Star[50];
+
+
 public void setup() 
 {
   size(500, 500);
   background(0);
-  for (int i = 0; i < nightSky.length; i++) {
-    nightSky[i] = new Star();
+  for (int i = 0; i < stars.length; i++) {
+    stars[i] = new Star();
   }
 
   //your code here
+  
 }
 public void draw() 
 {
   background(0);
+  for (int i = 0; i < stars.length; i++) {
+    stars[i].show();
+  }
   //these if statements are the keyboard inputs
   //the keyboard inputs toggle a boolean until they are lifted.
   //when that boolean = true, this behavior happens
@@ -47,13 +54,15 @@ public void draw()
   roger.show();
 }
 
+//when input
+
 public void keyPressed()
 {
   if (key == 'q') {
-    roger.myXspeed = roger.myYspeed = 0; 
-    roger.myCenterX = (int)(random(20, 480));
-    roger.myCenterY = (int)(random(20, 480));
-    roger.myPointDirection = (int)(random(360));
+    roger.setSpeed(0); 
+    roger.setY();
+    roger.setX();
+    roger.setDirection();
   }
   if (keyCode == SHIFT) {
     charge = true;
