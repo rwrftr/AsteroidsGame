@@ -1,29 +1,36 @@
 class Asteroid extends Floater
 {
-  int c1, c2;
+  int c1, c2, rotspeed;
   public Asteroid() {
-    corners = 3;
+    corners = 5;
     xCorners = new int[corners];
-    xCorners[0] = 16;
+    xCorners[0] = 5;
     xCorners[1] = -8;
-    xCorners[2] = -8;
+    xCorners[2] = -6;
+    xCorners[3] = 3;
+    xCorners[4] = 14;
     yCorners = new int[corners];
-    yCorners[0] = 0;
+    yCorners[0] = 10;
     yCorners[1] = 8;
-    yCorners[2] = -8;
+    yCorners[2] = -5;
+    yCorners[3] = -9;
+    yCorners[4] = -5;
     c1 = 0;
     c2 = 255;
     myColor = color(255, 255, 255);
-    myCenterX = myCenterY = 250; 
-    myXspeed = myYspeed = 0; 
-    myPointDirection = 0;
+    myCenterX = (Math.random()*250); 
+    myCenterY = (Math.random()*250); 
+    myXspeed = (Math.random()*10)-5; 
+    myYspeed = (Math.random()*10)-5; 
+    myPointDirection = (Math.random()*360);
+    rotspeed = (int)(Math.random()*10)+1;
   }
-  public void move (double rotatedeg)   //move the floater in the current direction of travel
+  public void move ()   //move the floater in the current direction of travel
   {      
     //change the x and y coordinates by myXspeed and myYspeed       
     myCenterX += myXspeed;    
     myCenterY += myYspeed;  
-    myPointDirection += rotatedeg;
+    myPointDirection += rotspeed;
 
     //wrap around screen    
     if (myCenterX >width)
@@ -40,5 +47,11 @@ class Asteroid extends Floater
     {     
       myCenterY = height;
     }
+  }
+  public Float getCenterX() {
+    return (float)myCenterX;
+  }
+  public Float getCenterY() {
+    return (float)myCenterY;
   }
 }
