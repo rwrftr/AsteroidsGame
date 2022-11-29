@@ -38,6 +38,14 @@ class Spaceship extends Floater
   public Float getCenterY() {
     return (float)myCenterY;
   }
+  
+  public void bounce(){
+  
+  myXspeed = (((myXspeed)*(-1) )/ 2);
+  myYspeed = (((myYspeed)*(-1) )/ 2);
+  
+  }
+  
   public void show ()  //Draws the floater at the current position  
   {    
     //noFill();
