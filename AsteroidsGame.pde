@@ -62,8 +62,9 @@ public void draw()
   //for (int i = 0; i < frank.size(); i++) {
   for (int i = frank.size() -1; i > 0; i--) {
     frank.get(i).move();
-    if (dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 10) {
+    if (dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 20) {
       frank.remove(i);
+      //roger.bounce();
     }else{
     frank.get(i).show();
   }
