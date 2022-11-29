@@ -4,18 +4,23 @@ Spaceship roger = new Spaceship();
 boolean charge, forward, leftturn, rightturn, backup = false; // my toggles when pressing keybuttons
 int storedenergy = 0;
 Star [] stars = new Star[50];
+ArrayList <Asteroid> frank = new ArrayList <Asteroid>();
+
 
 
 public void setup() 
 {
   size(500, 500);
   background(0);
+  //array for stars
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
-
+  //arraylist for asteroids
+  for (int i = 0; i < 10; i++) {
+    frank.add( new Asteroid());
+  }
   //your code here
-  
 }
 public void draw() 
 {
@@ -52,7 +57,17 @@ public void draw()
   //move and show the spaceship
   roger.move();
   roger.show();
-}
+
+  //move and show all of the asteroids
+  //for (int i = 0; i < frank.size(); i++) {
+  for (int i = frank.size() -1; i > 0; i--) {
+    frank.get(i).move();
+    if (dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 10) {
+      frank.remove(i);
+    }else{
+    frank.get(i).show();
+  }
+}}
 
 //when input
 
