@@ -64,7 +64,7 @@ public void draw()
     frank.get(i).move();
     if (dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 20) {
       frank.remove(i);
-      //roger.bounce();
+      roger.bounce();
     }else{
     frank.get(i).show();
   }
