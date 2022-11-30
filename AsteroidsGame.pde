@@ -1,7 +1,7 @@
 //global declarations
 
 Spaceship roger = new Spaceship();
-boolean charge, forward, leftturn, rightturn, backup = false; // my toggles when pressing keybuttons
+boolean charge, forward, leftturn, rightturn, backup, destroybuffer = false; // my toggles when pressing keybuttons + buffer
 int storedenergy = 0;
 Star [] stars = new Star[50];
 ArrayList <Asteroid> frank = new ArrayList <Asteroid>();
@@ -62,13 +62,16 @@ public void draw()
   //for (int i = 0; i < frank.size(); i++) {
   for (int i = frank.size() -1; i > 0; i--) {
     frank.get(i).move();
-    if (dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 20) {
+    if ((dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 20) && destroybuffer == false){
       frank.remove(i);
       roger.bounce(i);
+      destroybuffer = true;
     }else{
     frank.get(i).show();
   }
-}}
+}
+destroybuffer = false;
+}
 
 //when input
 
