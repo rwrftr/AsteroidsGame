@@ -62,15 +62,15 @@ public void draw()
   //for (int i = 0; i < frank.size(); i++) {
   for (int i = frank.size() -1; i > 0; i--) {
     frank.get(i).move();
-    if ((dist(frank.get(i).getCenterX(),frank.get(i).getCenterY(),roger.getCenterX(),roger.getCenterY() ) < 20) && destroybuffer == false){
-      frank.remove(i);
+    if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), roger.getCenterX(), roger.getCenterY() ) < 20) && destroybuffer == false) {
       roger.bounce(i);
+      frank.remove(i);
       destroybuffer = true;
-    }else{
-    frank.get(i).show();
+    } else {
+      frank.get(i).show();
+    }
   }
-}
-destroybuffer = false;
+  destroybuffer = false;
 }
 
 //when input
