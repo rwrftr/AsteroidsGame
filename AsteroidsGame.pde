@@ -10,7 +10,7 @@ ArrayList <Asteroid> frank = new ArrayList <Asteroid>();
 
 public void setup() 
 {
-  size(500, 500);
+  size(1280, 720);
   background(0);
   //array for stars
   for (int i = 0; i < stars.length; i++) {
@@ -31,17 +31,7 @@ public void draw()
   //these if statements are the keyboard inputs
   //the keyboard inputs toggle a boolean until they are lifted.
   //when that boolean = true, this behavior happens
-  if (charge == true) {
-    //println(storedenergy);
-    if (storedenergy < 480) {
-      storedenergy+= 2;
-    }
-    for (int i = 0; i<storedenergy; i++) {
-
-      fill(36, 234, 240);
-      rect(10, 10, storedenergy, 30, 20 );
-    }
-  }
+  
   if (rightturn == true) {
     roger.turn(5);
   }
@@ -67,10 +57,22 @@ public void draw()
       frank.remove(i);
       destroybuffer = true;
     } else {
+      for (int z = frank.size() -1; z > 0; z--) { 
+        if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), frank.get(z).getCenterX(), frank.get(z).getCenterY() ) < 20) && i != z) {          
+          frank.get(i).bounce(z);
+        }
+      }
       frank.get(i).show();
     }
   }
   destroybuffer = false;
+  if (charge == true) {
+    if (storedenergy < (width-20)) {
+      storedenergy+= 4;
+    }
+    fill(36, 234, 240);
+    rect(10, 10, storedenergy, 30, 20 );
+  }
 }
 
 //when input
@@ -97,6 +99,9 @@ public void keyPressed()
   }
   if (key == 's') {
     backup = true;
+  }
+  if (key == 'r') {
+    frank.add( new Asteroid());
   }
 }
 
