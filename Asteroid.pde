@@ -1,7 +1,9 @@
 class Asteroid extends Floater
 {
+  boolean benHit;
   int c1, c2, rotspeed;
   public Asteroid() {
+    benHit = false;
     corners = 5;
     xCorners = new int[corners];
     xCorners[0] = 5;
@@ -18,8 +20,8 @@ class Asteroid extends Floater
     c1 = 0;
     c2 = 255;
     myColor = color(255, 255, 255);
-    myCenterX = (Math.random()*250); 
-    myCenterY = (Math.random()*250); 
+    myCenterX = (Math.random()*1260)+10; 
+    myCenterY = (Math.random()*700)+10;
     myXspeed = (Math.random()*10)-5; 
     myYspeed = (Math.random()*10)-5; 
     myPointDirection = (Math.random()*360);
@@ -48,10 +50,17 @@ class Asteroid extends Floater
       myCenterY = height;
     }
   }
+ 
   public Float getCenterX() {
     return (float)myCenterX;
   }
   public Float getCenterY() {
     return (float)myCenterY;
+  }
+
+  public void bounce(int x) {    
+
+    myXspeed = myXspeed / 2 - ((frank.get(x).myXspeed) / 2);
+    myYspeed = myYspeed / 2 - ((frank.get(x).myYspeed) / 2);
   }
 }
