@@ -41,12 +41,8 @@ class Spaceship extends Floater
   
   public void bounce(int x){
   
-  //myXspeed += (frank.get(x).myXspeed);
-  //myYspeed += (frank.get(x).myYspeed);
-  //myXspeed = ((frank.get(x).myXspeed) - myXspeed);
-  //myYspeed = ((frank.get(x).myYspeed) - myYspeed);
-  myXspeed = ((frank.get(x).myXspeed) / 2);
-  myYspeed = ((frank.get(x).myYspeed) / 2);
+  myXspeed = myXspeed / 5 + 4 * ((frank.get(x).myXspeed) / 5);
+  myYspeed = myYspeed / 5 + 4 * ((frank.get(x).myYspeed) / 5);
   
   }
   
