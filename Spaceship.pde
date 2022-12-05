@@ -38,7 +38,15 @@ class Spaceship extends Floater
   public Float getCenterY() {
     return (float)myCenterY;
   }
-  
+  public Float getXSpeed() {
+    return (float)myXspeed;
+  }
+  public Float getYSpeed() {
+    return (float)myYspeed;
+  }
+  public double getPoint(){
+    return myPointDirection;
+  }
   public void bounce(int x){
   
   myXspeed = myXspeed / 5 + 4 * ((frank.get(x).myXspeed) / 5);
