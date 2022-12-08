@@ -1,11 +1,12 @@
 //global declarations
 
 Spaceship roger = new Spaceship();
-boolean charge, forward, leftturn, rightturn, backup, destroybuffer = false; // my toggles when pressing keybuttons + buffer
-int storedenergy = 0;
+boolean charge, forward, leftturn, rightturn, backup, destroybuffer, launch = false; // my toggles when pressing keybuttons + buffer
+boolean launchdelay = true;
+int storedenergy, blah = 0;
 Star [] stars = new Star[50];
 ArrayList <Asteroid> frank = new ArrayList <Asteroid>();
-
+ArrayList <Bullet> sammy = new ArrayList <Bullet>();
 
 
 public void setup() 
@@ -31,7 +32,7 @@ public void draw()
   //these if statements are the keyboard inputs
   //the keyboard inputs toggle a boolean until they are lifted.
   //when that boolean = true, this behavior happens
-  
+
   if (rightturn == true) {
     roger.turn(5);
   }
@@ -44,12 +45,32 @@ public void draw()
   if (backup == true) {
     roger.accelerate(-0.1);
   }
+
+  if (launch && blah % 10 == 0) {
+    sammy.add(new Bullet(roger));
+  }
+
+  if (sammy.size() >= 1) {
+    for (int i = sammy.size() -1; i > 0; i--) {
+      for (int z = frank.size() -1; z > 0; z--) {
+        if (dist(sammy.get(i).getCenterX(), sammy.get(i).getCenterY(), frank.get(z).getCenterX(), frank.get(z).getCenterY()) < 20) {
+          frank.remove(z);
+          sammy.remove(i);
+          break;
+        }
+      }
+    }
+  }
+
+  for (int i = sammy.size() -1; i > 0; i--) {
+    sammy.get(i).show();
+    sammy.get(i).move();
+  }
   //move and show the spaceship
   roger.move();
   roger.show();
 
   //move and show all of the asteroids
-  //for (int i = 0; i < frank.size(); i++) {
   for (int i = frank.size() -1; i > 0; i--) {
     frank.get(i).move();
     if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), roger.getCenterX(), roger.getCenterY() ) < 20) && destroybuffer == false) {
@@ -73,6 +94,7 @@ public void draw()
     fill(36, 234, 240);
     rect(10, 10, storedenergy, 30, 20 );
   }
+  blah++;
 }
 
 //when input
@@ -103,6 +125,11 @@ public void keyPressed()
   if (key == 'r') {
     frank.add( new Asteroid());
   }
+  if (key == ' ') {
+    if(launch == false){blah = 10;}
+    
+    launch = true;
+  }
 }
 
 public void keyReleased()
@@ -123,5 +150,8 @@ public void keyReleased()
   }
   if (key == 's') {
     backup = false;
+  }
+  if (key == ' ') {
+    launch = false;
   }
 }
